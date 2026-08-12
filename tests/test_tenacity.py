@@ -177,7 +177,6 @@ class TestRetryingName(unittest.TestCase):
         args = log.call_args[0]
         assert "my_block" in args[1]
 
-
     def test_logging_infers_caller_name(self) -> None:
         """before_log infers the enclosing function name when no name= is given (#511).
 
