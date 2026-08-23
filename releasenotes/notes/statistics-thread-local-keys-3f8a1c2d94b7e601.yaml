@@ -1,8 +1,8 @@
 ---
 fixes:
   - |
-    Initialize the per-thread ``statistics`` dict with the full key set
-    instead of an empty dict. When ``begin()`` ran on a different thread than
-    the retry loop (for example under Temporal's replay worker), reading
-    ``statistics["idle_for"]`` in ``next_action`` raised ``KeyError``.
-    See issue #507.
+    Fixed a :exc:`KeyError` on ``statistics["idle_for"]`` when ``begin()``
+    ran on a different thread than the retry loop (for example under
+    Temporal's replay worker): ``next_action()`` now reads ``idle_for`` and
+    ``attempt_number`` with defaults instead of assuming they were already
+    initialized on the current thread. See issue #507.
