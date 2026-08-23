@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Initialize the per-thread ``statistics`` dict with the full key set
+    instead of an empty dict. When ``begin()`` ran on a different thread than
+    the retry loop (for example under Temporal's replay worker), reading
+    ``statistics["idle_for"]`` in ``next_action`` raised ``KeyError``.
+    See issue #507.
